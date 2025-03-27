@@ -1,3 +1,4 @@
+package model;
 /**
  * DESCRIPCIÓN DEL PROGRAMA:
  * Este es un programa que emula el juego de Battleship en una dimensión mediante arreglos. Le permite al usuario jugar por turnos contra la máquina en una única dificultad. Genera aleatoriamente un tablero para la máquina y le permite al usuario posicionar sus propios barcos. Cuando el usuario posiciona sus barcos sale como un 1, si está golpeado un 2 y si está hundido un 3. Lo mismo para el tablero de la máquina solo que oculta donde están sus barcos, muestra 0 si esa casilla ya fue atacada, 2 si es un barco golpeado y 3 si ya está hundido.
@@ -56,6 +57,32 @@ public class Battleship {
 
         jugarBattleship(tableroJugador, tableroJugadorOculto, tableroCPU, tableroCPUOculto, atacadoJugador, atacadoCPU);
     }
+
+    public ShipType calculateShipType(int option){
+        ShipType temp = ShipType.LANCHA;
+        switch (option) {
+            case 1:
+                temp = ShipType.LANCHA;
+                break;
+            case 2:
+                temp = ShipType.MEDICO;
+                break;
+            case 3:
+                temp = ShipType.MUNICION;
+                break;
+            case 4:
+                temp = ShipType.PROVISIONES;
+                break;
+            case 5:
+                temp = ShipType.GUERRA;
+                break;
+            case 6:
+                temp = ShipType.PORTAAVIONES;
+                break;
+        }
+        return temp;
+
+    }
     /**
      * DESCRIPCIÓN
      * Este método se encarga de posicionar los barcos. En el main se le solicitó al usuario la posición barco, se tiene en cuenta el tamaño del barco y su Id para luego identificar su hundimiento. En el tablero el barco no se registra como 1 si no con su id. Esto para hacer más sencillo su verificación de hundimiento. Es de retorno booleano para así, mediante una flag verificar si todo se hizo correctamente, y el usuario no intentó poner un barco en la casilla mayor a 10. Su retorno booleano es true si fue válido y false en caso de no.
@@ -81,6 +108,11 @@ public class Battleship {
         return true;
     }
 
+
+    public boolean placeShips(int type, Coords coords){
+        
+        return true;
+    }
 
 /**
  * Descripción: Lo que hace este método es crear un arreglo con los tamaños de los barcos, t de manera random entre 1 y 10 colocar un id dentro del arreglo teniendo en cuenta los tamaños, primero pone 1 barco de 3 casillas id 4, busca un espacio libre del tamaño siguiente y asi asigna un barco de 2 casillas id 5 y por ultimo busca un espacio libre y pone un barco de 1 casilla id 6. Devuelve el arreglo generado, y no tiene entradas
